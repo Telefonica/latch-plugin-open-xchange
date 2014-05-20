@@ -1,0 +1,89 @@
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="com.elevenpaths.latch.plugins.openexchange" verbose="1">
+	<test name="com.elevenpaths.latch.plugins.openexchange.repository.impl.ldap.LatchLDAPUserRepositoryTest01">
+		<classes>
+			<class name="com.elevenpaths.latch.plugins.openexchange.repository.impl.ldap.LatchLDAPUserRepositoryTest">
+				<methods>
+					<include name="getLatchAccountId" />					
+					<parameter name="ldapURL" value="ldap://127.0.0.1:389" />
+					<parameter name="ldapBindDN" value="cn=openexchange,ou=Applications,dc=11paths,dc=local" />
+					<parameter name="ldapBindPassword" value="abcd1234" />
+					<parameter name="ldapSearchBaseDN" value="ou=People,dc=11paths,dc=local" />
+					<parameter name="ldapSearchFilter" value="(&amp;(uid=@@@USER@@@)(objectClass=inetOrgPerson))" />
+					<parameter name="userAttribute" value="postOfficeBox" />
+					<parameter name="username" value="test01" />
+					<parameter name="accountId" value="7436dab627fd98dbc2f3ec26544e48b7b6e248549f3ebde2d1e6f50db79537c3" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+    <test name="com.elevenpaths.latch.plugins.openexchange.repository.impl.ldap.LatchLDAPUserRepositoryTest02">
+		<classes>
+			<class name="com.elevenpaths.latch.plugins.openexchange.repository.impl.ldap.LatchLDAPUserRepositoryTest">
+				<methods>
+					<include name="setLatchAccountId" />					
+					<parameter name="ldapURL" value="ldap://127.0.0.1:389" />
+					<parameter name="ldapBindDN" value="cn=openexchange,ou=Applications,dc=11paths,dc=local" />
+					<parameter name="ldapBindPassword" value="abcd1234" />
+					<parameter name="ldapSearchBaseDN" value="ou=People,dc=11paths,dc=local" />
+					<parameter name="ldapSearchFilter" value="(&amp;(uid=@@@USER@@@)(objectClass=inetOrgPerson))" />
+					<parameter name="userAttribute" value="postOfficeBox" />
+					<parameter name="username" value="test01" />
+					<parameter name="accountId" value="7436dab627fd98dbc2f3ec26544e48b7b6e248549f3ebde2d1e6f50db79537c3" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="com.elevenpaths.latch.sdk.impl.LatchSDKImplTest01">
+		<classes>
+			<class name="com.elevenpaths.latch.sdk.impl.LatchSDKImplTest">
+				<methods>
+					<include name="parsedStatus" />
+					<parameter name="applicationId" value="ZN6hPhKM4Un9Q7z3bSLn" />
+					<parameter name="secret" value="knST8qro3b5kNhQzzdya4oLLRyQMGaKlutZDSzbj" />
+					<parameter name="accountId" value="7436dab627fd98dbc2f3ec26544e48b7b6e248549f3ebde2d1e6f50db79537c3" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="com.elevenpaths.latch.sdk.impl.LatchSDKImplTest02">
+		<classes>
+			<class name="com.elevenpaths.latch.sdk.impl.LatchSDKImplTest">
+				<methods>
+					<include name="parsedStatusThrowsLatchErrorException" />
+					<parameter name="applicationId" value="ZN6hPhKM5Un9Q7z3bSLn" />
+					<parameter name="secret" value="knST8qro3b5kNhQgzdya4oLLRyQMGaKlutZDSzbj" />
+					<parameter name="accountId" value="7436dab627fd98dtc2f3ec26544e48b7b6e248549f3ebde2d1e6f50db79537c3" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="com.elevenpaths.latch.sdk.impl.LatchSDKImplTest03">
+		<classes>
+			<class name="com.elevenpaths.latch.sdk.impl.LatchSDKImplTest">
+				<methods>
+					<include name="parsedStatusUnknown" />
+					<parameter name="applicationId" value="ZN6hPhKM4Un9Q7z3bSLn" />
+					<parameter name="secret" value="knST8qro3b5kNhQzzdya4oLLRyQMGaKlutZDSzbj" />
+					<parameter name="operationId" value="UgJ6W9hB6xLpT66E1Maa" />
+					<parameter name="accountId" value="7436dab627fd98dbc2f3ec26544e48b7b6e248549f3ebde2d1e6f50db79537c3" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="com.elevenpaths.latch.sdk.impl.LatchSDKImplTest04">
+		<classes>
+			<class name="com.elevenpaths.latch.sdk.impl.LatchSDKImplTest">
+				<methods>
+					<include name="parsedStatusWithOperation" />
+					<parameter name="applicationId" value="XxBsAMgi3iyIQlHsgCGJ" />
+					<parameter name="secret" value="ELRbsDcQdxoRkPW63FG1c5PF1VC7nKtI4lUHxVbq" />
+					<parameter name="operationId" value="UgJ6W9hB6xLpT66E1Maa" />
+					<parameter name="accountId"	value="7436dab627fd98dbc2f3ec26544e48b7b6e248549f3ebde2d1e6f50db79537c3" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite> 

@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Open-Xchange Latch Integration
+Bundle-SymbolicName: com.elevenpaths.latch
+Bundle-Version: ${APP_VER}
+Bundle-Activator: com.elevenpaths.latch.plugins.openexchange.osgi.Latc
+ hActivator
+Bundle-Vendor: Eleven Paths
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: com.openexchange.authentication,com.openexchange.authe
+ ntication.service,com.openexchange.config,com.openexchange.context,co
+ m.openexchange.exception,com.openexchange.osgi,com.openexchange.user,
+ javax.crypto,javax.crypto.spec,javax.naming,javax.naming.directory,or
+ g.osgi.framework,org.slf4j
+Export-Package: com.elevenpaths.latch,com.elevenpaths.latch.plugins.op
+ enexchange.config,com.elevenpaths.latch.plugins.openexchange.reposito
+ ry,com.elevenpaths.latch.plugins.openexchange.util,com.elevenpaths.la
+ tch.sdk.impl,com.google.gson
+Bundle-ClassPath: com.elevenpaths.latch.jar,lib/async-http-client-1.8.
+ 3.jar,lib/gson-2.2.4.jar,lib/latch-0.6.jar

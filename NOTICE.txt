@@ -1,0 +1,11 @@
+This software uses and distributes the Google GSON Java library, licensed
+under the Apache License, Version 2.0.
+
+Google GSON: https://code.google.com/p/google-gson/
+Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0 
+
+This software uses and distributes the Async Http Client Java library,
+licensed under the Apache License, Version 2.0.
+
+Async Http Client: https://github.com/AsyncHttpClient/async-http-client
+Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0
