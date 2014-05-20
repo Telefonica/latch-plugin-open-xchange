@@ -1,0 +1,216 @@
+<project>
+
+	<property name="version" value="1.0.0" />
+
+	<property file="build.properties" />
+
+	<path id="build.classpath.main">
+		<fileset dir="lib/main/java">
+			<include name="async-http-client-1.8.3.jar" />
+			<include name="gson-2.2.4.jar" />
+		</fileset>
+		<fileset dir="${openexchange.dir}">
+			<include name="bundles/com.openexchange.configread.jar" />
+			<include name="bundles/com.openexchange.documentation.jar" />
+			<include name="bundles/com.openexchange.global/com.openexchange.global.jar" />
+			<include name="bundles/com.openexchange.java.jar" />
+			<include name="bundles/com.openexchange.osgi.jar" />
+			<include name="bundles/com.openexchange.server/com.openexchange.server.jar" />
+			<include name="bundles/org.eclipse.osgi_3.9.0.v20130529-1710.jar" />
+			<include name="bundles/org.json.jar" />
+			<include name="bundles/slf4j-api-1.7.5.jar" />
+		</fileset>
+	</path>
+
+	<path id="build.classpath.test">
+		<fileset dir="${logback.dir}">
+			<include name="logback-classic-1.1.2.jar" />
+			<include name="logback-core-1.1.2.jar" />
+		</fileset>
+		<fileset dir="${powermock.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="build.classpath.installer">
+		<fileset dir="${izpack.dir}">
+			<include name="lib/*.jar" />
+		</fileset>
+	</path>
+
+	<taskdef name="IzPack" classname="com.izforge.izpack.ant.IzPackTask">
+		<classpath>
+			<path refid="build.classpath.installer" />
+		</classpath>
+	</taskdef>
+
+	<taskdef resource="testngtasks">
+		<classpath>
+			<path refid="build.classpath.test" />
+		</classpath>
+	</taskdef>
+
+	<target name="clean">
+		<delete dir="dist" />
+	</target>
+
+	<target name="build">
+
+		<mkdir dir="dist/main/classes" />
+
+		<javac srcdir="src/main/java" destdir="dist/main/classes" includeantruntime="false">
+			<classpath>
+				<path refid="build.classpath.main" />
+			</classpath>
+		</javac>
+
+		<mkdir dir="dist/test/classes" />
+
+		<javac srcdir="src/test/java" destdir="dist/test/classes" includeantruntime="false">
+			<classpath>
+				<path refid="build.classpath.main" />
+				<path refid="build.classpath.test" />
+				<pathelement location="dist/main/classes" />
+			</classpath>
+		</javac>
+
+		<copy todir="dist/test/classes">
+			<fileset dir="src/test/resources">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<mkdir dir="dist/test/reports" />
+
+		<testng haltonfailure="true" outputDir="dist/test/reports">
+			<classpath>
+				<path refid="build.classpath.main" />
+				<path refid="build.classpath.test" />
+				<pathelement location="dist/main/classes" />
+				<pathelement location="dist/test/classes" />
+			</classpath>
+			<jvmarg value="-ea" />
+			<xmlfileset dir="src/test" includes="testng.xml" />
+		</testng>
+
+		<mkdir dir="dist/installer/classes" />
+
+		<javac srcdir="src/installer/java" destdir="dist/installer/classes" includeantruntime="false">
+			<classpath>
+				<path refid="build.classpath.installer" />
+			</classpath>
+		</javac>
+
+		<mkdir dir="dist/commands" />
+
+		<copy todir="dist/commands">
+			<fileset dir="src/dist/commands">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<replace file="dist/commands/build-appsuite.sh" token="@@@BASEDIR@@@" value="${basedir}" />
+		<replace file="dist/commands/build-appsuite.sh" token="@@@APPSUITE_UI_BINDIR@@@" value="${openexchange.ui.dir}/bin" />
+
+		<chmod perm="755">
+			<fileset dir="dist/commands">
+				<include name="**/*.sh" />
+			</fileset>
+		</chmod>
+
+		<mkdir dir="dist/pairing/appsuite" />
+
+		<exec executable="dist/commands/build-appsuite.sh" />
+		<move file="dist/pairing/appsuite/manifests/manifest.json" tofile="dist/pairing/appsuite/manifests/latch.json" />
+
+		<delete dir="src/main/appsuite/tmp" />
+		<delete file="src/main/appsuite/ox.pot" />
+
+	</target>
+
+	<target name="prepare">
+
+		<mkdir dir="dist/core" />
+
+		<copy todir="dist/core">
+			<fileset dir="src/main">
+				<include name="bundles/com.elevenpaths.latch/**/*" />
+				<include name="etc/latch.properties" />
+				<include name="osgi/bundle.d/com.elevenpaths.latch.ini" />
+			</fileset>
+		</copy>
+
+		<mkdir dir="dist/core/bundles/com.elevenpaths.latch/lib" />
+
+		<copy todir="dist/core/bundles/com.elevenpaths.latch/lib">
+			<fileset dir="lib/main/java">
+				<include name="async-http-client-1.8.3.jar" />
+				<include name="gson-2.2.4.jar" />
+			</fileset>
+		</copy>
+
+		<jar destfile="dist/core/bundles/com.elevenpaths.latch/com.elevenpaths.latch.jar">
+			<fileset dir="dist/main/classes">
+				<include name="com/elevenpaths/latch/*.class" />
+				<include name="com/elevenpaths/latch/plugins/openexchange/config/*.class" />
+				<include name="com/elevenpaths/latch/plugins/openexchange/impl/*.class" />
+				<include name="com/elevenpaths/latch/plugins/openexchange/osgi/*.class" />
+				<include name="com/elevenpaths/latch/plugins/openexchange/repository/*.class" />
+				<include name="com/elevenpaths/latch/plugins/openexchange/repository/impl/db/*.class" />
+				<include name="com/elevenpaths/latch/plugins/openexchange/repository/impl/ldap/*.class" />
+				<include name="com/elevenpaths/latch/plugins/openexchange/util/*.class" />
+				<include name="com/elevenpaths/latch/sdk/impl/*.class" />
+			</fileset>
+		</jar>
+
+		<mkdir dir="dist/pairing" />
+
+		<copy todir="dist/pairing">
+			<fileset dir="src/main">
+				<include name="bundles/com.elevenpaths.latch.json/**/*" />
+				<include name="osgi/bundle.d/com.elevenpaths.latch.json.ini" />
+			</fileset>
+		</copy>
+
+		<jar destfile="dist/pairing/bundles/com.elevenpaths.latch.json/com.elevenpaths.latch.json.jar">
+			<fileset dir="dist/main/classes">
+				<include name="com/elevenpaths/latch/plugins/openexchange/json/*.class" />
+				<include name="com/elevenpaths/latch/plugins/openexchange/json/actions/*.class" />
+				<include name="com/elevenpaths/latch/plugins/openexchange/json/osgi/*.class" />
+			</fileset>
+		</jar>
+
+		<copy todir="dist/installer">
+			<fileset dir="src/installer">
+				<exclude name="java" />
+				<exclude name="java/**/*" />
+			</fileset>
+		</copy>
+
+		<replace file="dist/installer/installer.xml" token="@@@VERSION@@@" value="${version}" />
+		<replace file="dist/installer/installer.xml" token="@@@BASEDIR@@@" value="${basedir}" />
+
+		<mkdir dir="dist/installer/actions" />
+
+		<jar destfile="dist/installer/actions/actions.jar">
+			<fileset dir="dist/installer/classes">
+				<include name="**/*" />
+			</fileset>
+		</jar>
+
+	</target>
+
+	<target name="dist" depends="clean, build, prepare">
+
+		<IzPack input="dist/installer/installer.xml" output="dist/latch-open-xchange-installer-${version}.jar" basedir="dist/installer" />
+
+		<delete dir="dist/commands" />
+		<delete dir="dist/core" />
+		<delete dir="dist/installer" />
+		<delete dir="dist/main" />
+		<delete dir="dist/pairing" />
+		<delete dir="dist/test" />
+
+	</target>
+
+</project>

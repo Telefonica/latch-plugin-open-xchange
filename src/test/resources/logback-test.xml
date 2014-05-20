@@ -1,0 +1,14 @@
+<configuration>
+
+	<appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date{"yyyy-MM-dd'T'HH:mm:ss,SSSZ"} [%thread] %level %logger - %message%n%exception{short}</pattern>
+		</encoder>
+		<target>System.err</target>		
+	</appender>
+
+	<root level="debug">
+		<appender-ref ref="STDERR" />
+	</root>
+
+</configuration>

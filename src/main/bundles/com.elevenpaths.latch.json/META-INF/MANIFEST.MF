@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Open-Xchange Latch Integration JSON API
+Bundle-SymbolicName: com.elevenpaths.latch.json
+Bundle-Version: ${APP_VER}
+Bundle-Activator: com.elevenpaths.latch.plugins.openexchange.json.osgi
+ .LatchJsonActivator
+Bundle-Vendor: Eleven Paths
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: com.elevenpaths.latch,com.elevenpaths.latch.plugins.op
+ enexchange.config,com.elevenpaths.latch.plugins.openexchange.reposito
+ ry,com.elevenpaths.latch.plugins.openexchange.util,com.elevenpaths.la
+ tch.sdk.impl,com.google.gson,com.openexchange.ajax.requesthandler,com
+ .openexchange.ajax.requesthandler.osgiservice,com.openexchange.config
+ ,com.openexchange.context,com.openexchange.exception,com.openexchange
+ .groupware.contexts,com.openexchange.server,com.openexchange.tools.se
+ rvlet,com.openexchange.tools.session,com.openexchange.user,org.json,o
+ rg.slf4j
+Bundle-ClassPath: com.elevenpaths.latch.json.jar

@@ -1,0 +1,104 @@
+<izpack:installation version="5.0" xmlns:izpack="http://izpack.org/schema/installation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://izpack.org/schema/installation http://izpack.org/schema/5.0/izpack-installation-5.0.xsd">
+
+    <info>
+		<appname>Latch Plugin for Open-Xchange</appname>
+		<appversion>@@@VERSION@@@</appversion>
+		<appsubpath>elevenpaths/latch/plugins/open-xchange/@@@VERSION@@@</appsubpath>
+		<authors>
+			<author name="Eleven Paths" email="" />
+		</authors>
+		<url>https://latch.elevenpaths.com</url>
+		<javaversion>1.6</javaversion>
+		<uninstaller name="uninstall.jar" path="${INSTALL_PATH}/uninstaller" write="yes"/>
+        <writeinstallationinformation>no</writeinstallationinformation>
+	</info>
+
+	<variables>
+		<variable name="UserPathPanelVariable" value="/opt/open-xchange"/>
+	</variables>
+
+	<conditions>
+		<condition type="user" id="rootIsInstalling">
+			<requiredusername>root</requiredusername>
+		</condition>	
+	</conditions>
+
+	<installerrequirements>
+		<installerrequirement message="The installer is only for Linux variants" condition="izpack.linuxinstall"/>
+		<installerrequirement message="The installer must be run by root" condition="rootIsInstalling"/>
+	</installerrequirements>
+
+	<guiprefs width="800" height="600" resizable="no">
+		<modifier key="layoutAnchor" value="CENTER"/>
+        <modifier key="useHeadingPanel" value="yes"/>
+        <modifier key="useHeadingForSummary" value="yes"/>
+        <modifier key="headingImageOnLeft" value="yes"/>
+        <modifier key="headingLineCount" value="2"/>
+        <modifier key="headingFontSize" value="1.5"/>
+        <modifier key="headingBackgroundColor" value="0x00ffffff"/>
+        <modifier key="headingPanelCounter" value="text"/>
+        <modifier key="headingPanelCounterPos" value="inHeading"/>
+		<laf name="substance">
+			<param name="variant" value="mist-silver" />
+			<os family="unix" />
+		</laf>
+	</guiprefs>
+
+	<locale>
+		<langpack iso3="eng" />
+	</locale>
+
+	<resources>
+	    <res id="HTMLInfoPanel.notice" src="resources/html/notice.html"/>
+        <res id="HTMLInfoPanel.readme" src="resources/html/readme.html"/>
+        <res id="HTMLLicencePanel.licence" src="resources/html/lgpl-2.1-standalone.html"/>
+		<res id="CustomLangPack.xml_eng" src="resources/i18n/CustomLangPack.xml_eng"/>
+ 	</resources>
+
+ 	<listeners>
+ 	    <listener classname="com.elevenpaths.latch.plugins.openexchange.izpack.listeners.LatchInstallerListener" stage="install" jar="@@@BASEDIR@@@/dist/installer/actions/actions.jar" />
+ 	    <listener classname="com.elevenpaths.latch.plugins.openexchange.izpack.listeners.LatchUninstallerListener" stage="uninstall" jar="@@@BASEDIR@@@/dist/installer/actions/actions.jar" />
+ 	</listeners>
+ 	
+	<panels>
+        <panel classname="HelloPanel" />
+        <panel classname="HTMLInfoPanel" id="readme" />
+        <panel classname="HTMLLicencePanel" id="licence" />
+        <panel classname="HTMLInfoPanel" id="notice" />
+        <panel classname="TargetPanel" />
+        <panel classname="PacksPanel" />
+        <panel classname="UserPathPanel" id="user.path.panel">        
+			<configuration>
+  				<param name="mustExist" value="true" />
+			</configuration>			
+         </panel>
+         <panel classname="SummaryPanel" />
+         <panel classname="InstallPanel" />
+         <panel classname="FinishPanel" />
+ 	</panels>
+
+	<packs>
+		<pack name="Core" required="yes">
+			<description>The core files for Latch integration.</description>
+			<fileset dir="../core" targetdir="${UserPathPanelVariable}" override="true" >
+			    <exclude name="etc/latch.properties"/>
+			</fileset>
+			<file src="../core/etc/latch.properties" targetdir="${UserPathPanelVariable}/etc" override="askfalse" />
+			<file src="scripts/core/postinstall.sh" targetdir="${INSTALL_PATH}/core"/>
+			<file src="scripts/core/uninstall.sh" targetdir="${INSTALL_PATH}/uninstaller/scripts/core"/>
+			<parsable targetfile="${UserPathPanelVariable}/bundles/com.elevenpaths.latch/META-INF/MANIFEST.MF" />
+			<parsable targetfile="${UserPathPanelVariable}/osgi/bundle.d/com.elevenpaths.latch.ini" />
+			<parsable targetfile="${INSTALL_PATH}/core/postinstall.sh" type="shell" />
+			<parsable targetfile="${INSTALL_PATH}/uninstaller/scripts/core/uninstall.sh" type="shell" />
+			<executable targetfile="${INSTALL_PATH}/core/postinstall.sh" keep="false" stage="postinstall" />
+			<executable targetfile="${INSTALL_PATH}/uninstaller/scripts/core/uninstall.sh" keep="false" stage="uninstall" />
+        </pack>
+		<pack name="Self Service" required="no" preselected="no">
+			<description>Pair and unpair accounts from Open-Xchange Settings.</description>
+			<fileset dir="../pairing" targetdir="${UserPathPanelVariable}" override="true" />
+			<parsable targetfile="${UserPathPanelVariable}/bundles/com.elevenpaths.latch.json/META-INF/MANIFEST.MF" />
+			<parsable targetfile="${UserPathPanelVariable}/osgi/bundle.d/com.elevenpaths.latch.json.ini" />
+		</pack>
+	</packs>
+
+</izpack:installation>     
