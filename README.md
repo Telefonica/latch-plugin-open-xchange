@@ -5,18 +5,18 @@
 ###PREREQUISITES
 * Open-Xchange version 7.4.2
 
-* To get the **"Application ID"** and **"Secret"**, (fundamental values for integrating Latch in any application), it’s necessary to register a developer account in [Latch's website](https://latch.elevenpaths.com"https://latch.elevenpaths.com"). On the upper right side, click on **"Developer area"**. 
+* To get the **"Application ID"** and **"Secret"**, (fundamental values for integrating Latch in any application), it’s necessary to register a developer account in [Latch's website](https://latch.elevenpaths.com). On the upper right side, click on **"Developer area"**.
 
 
 ###DOWNLOADING THE PLUGIN
- * When the account is activated, the user will be able to create applications with Latch and access to developer documentation, including existing SDKs and plugins. The user has to access again to [Developer area](https://latch.elevenpaths.com/www/developerArea"https://latch.elevenpaths.com/www/developerArea"), and browse his applications from **"My applications"** section in the side menu.
+ * When the account is activated, the user will be able to create applications with Latch and access to developer documentation, including existing SDKs and plugins. The user has to access again to [Developer area](https://latch.elevenpaths.com/www/developerArea), and browse his applications from **"My applications"** section in the side menu.
 
 * When creating an application, two fundamental fields are shown: **"Application ID"** and **"Secret"**, keep these for later use. There are some additional parameters to be chosen, as the application icon (that will be shown in Latch) and whether the application will support OTP  (One Time Password) or not.
 
 * From the side menu in developers area, the user can access the **"Documentation & SDKs"** section. Inside it, there is a **"SDKs and Plugins"** menu. Links to different SDKs in different programming languages and plugins developed so far, are shown.
 
 ###INSTALLING THE PLUGIN
-* Make sure that the Open-Xchange backend process is not running during the installation. The installer will try to stop the server before copying any files but it is preferable to have previously stopped it manually. 
+* Make sure that the Open-Xchange backend process is not running during the installation. The installer will try to stop the server before copying any files but it is preferable to have previously stopped it manually.
 
 * Make sure that there is a full backup of the Open-Xchange backend installation directory just in case something goes wrong during the installation.
 
@@ -24,7 +24,7 @@
 
 
 ####CONFIGURING THE INSTALLED MODULE
-* Remember to review the configuration properties that the component needs to function correctly and that are stored in a file called **latch.properties** in the **etc** folder of the Open-Xchange backend installation directory. 
+* Remember to review the configuration properties that the component needs to function correctly and that are stored in a file called **latch.properties** in the **etc** folder of the Open-Xchange backend installation directory.
 
 * In that file users should set Latch **application id** and **secret** as well as several other options regarding the repository where the pairing information will be stored.
 
@@ -43,7 +43,7 @@
 
 
 ##USE OF LATCH PLUGIN FOR THE USERS
-###PAIRING A USER IN Open-Xchange  
+###PAIRING A USER IN Open-Xchange
 **Latch does not affect in any case or in any way the usual operations with an account. It just allows or denies actions over it, acting as an independent extra layer of security that, once removed or without effect, will have no effect over the accounts, which will remain with their original state.**
 
 The user needs the Latch application installed on the phone, and follow these steps:
@@ -54,7 +54,7 @@ The user needs the Latch application installed on the phone, and follow these st
 
 * **Step 3:** The user has to type the characters generated on the phone into the text box displayed on the web page. Click on **"Pair"** button.
 
-* **Step 4:** Now the user may lock and unlock the account, preventing any unauthorized access.     
+* **Step 4:** Now the user may lock and unlock the account, preventing any unauthorized access.
 
-###UNPAIRING A USER IN Open-Xchange       
+###UNPAIRING A USER IN Open-Xchange
 The user has to log on into his Open-Xchange account and through the **Settings** button, get to Latch tab, where **unpair** may be pressed. He will receive a notification indicating that the service has been unpaired.
