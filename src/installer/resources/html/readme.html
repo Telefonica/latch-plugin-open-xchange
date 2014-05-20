@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
+
+<body>
+
+<h3 style="text-align: center;">Installation Notes</h3>
+
+<p><b>Prerequisites</b></p>
+
+<p>Please make sure that the Open-Xchange backend process is not running during
+the installation. The installer will try to stop the server before copying any 
+files but it is preferable to have previously stopped it manually.</p>
+
+<p>Also make sure taht there is a full backup of the Open-Xchange backend installation
+directory just in case something goes wrong during the installation.</p>
+
+<p>The installer will not try to start the Open-Xchange backend process after the
+installation. You must start it manually once the needed configuration tasks have been
+executed.</p>
+
+<p><b>Configuration</b></p>
+
+<p>Please remember to review the configuration properties that the component needs
+to function correctly and that are stored in a file called <code>latch.properties</code>
+in the <code>etc</code> folder of the Open-Xchange backend installation directory.
+
+<p>In that file you can configure your Latch application id and secret as well as
+several other options regarding the repository where the pairing information will
+be stored</p> 
+
+<p>Also remember that it may be necessary to add the CA that signs the Latch backend
+TLS certificates (StartCom Certification Authority) to the JVM certificate truststore
+as not all JVMs include it by default.</p>
+
+<p>For debugging purpouses a new logger and file appender can be configured in
+<code>logback.xml</code>. For example, to write all component's log messages to its own
+log file you can add the following:</p>
+
+<pre><code>
+
+[ . . . ]
+
+&lt;appender name="LATCH" class="ch.qos.logback.core.rolling.RollingFileAppender"&gt;
+    &lt;file&gt;/var/log/open-xchange/open-xchange-latch.log.0&lt;/file&gt;
+    &lt;rollingPolicy class="com.openexchange.logback.extensions.FixedWindowRollingPolicy"&gt;
+        &lt;fileNamePattern&gt;/var/log/open-xchange/open-xchange-latch.log.%i&lt;/fileNamePattern&gt;
+        &lt;minIndex&gt;1&lt;/minIndex&gt;
+        &lt;maxIndex&gt;99&lt;/maxIndex&gt;
+    &lt;/rollingPolicy&gt;
+    &lt;triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy"&gt;
+        &lt;maxFileSize&gt;2MB&lt;/maxFileSize&gt;
+    &lt;/triggeringPolicy&gt;
+    &lt;encoder class="com.openexchange.logback.extensions.ExtendedPatternLayoutEncoder"&gt;
+        &lt;pattern&gt;%date{"yyyy-MM-dd'T'HH:mm:ss,SSSZ"} [%thread] %level %logger - %message%n%exception{short}&lt;/pattern&gt;
+    &lt;/encoder&gt;
+&lt;/appender&gt;
+
+[ . . . ]
+
+&lt;logger name="com.elevenpaths.latch" level="ERROR"&gt;
+    &lt;appender-ref ref="LATCH" /&gt;
+&lt;/logger&gt;
+
+[ . . . ]
+</code></pre>
+
+<p><b>Uninstalling</b></p>
+
+<p>If you need to uninstall this component please remember that the installer will generate
+an uninstaller named <code>uninstall.jar</code> in a folder named <code>uninstaller</code>
+in the installation directory.</p>
+
+<p>Make sure that the Open-Xchange backend process is not running during the uninstall. The
+uninstaller will try to stop the server before deleting any files but it is preferable to have
+previously stopped it manually.</p>
+
+<p>Please also take into account that the uninstaller will not try to start the Open-Xchange
+backend process once the uninstall has finished. You must start the server manually.</p>
+
+<br/>
+
+</body>
+
+</html>

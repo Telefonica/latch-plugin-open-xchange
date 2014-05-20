@@ -1,0 +1,5 @@
+<langpack>
+  <str id="HTMLInfoPanel.notice.headline" txt="Notice on Third-Party Software"/>
+  <str id="UserPathPanel.user.path.panel.headline" txt="Select Open-Xchange Installation Path"/>
+  <str id="UserPathPanel.user.path.panel.info" txt="Select Open-Xchange Installation Path: "/>
+</langpack>
