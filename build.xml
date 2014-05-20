@@ -146,12 +146,12 @@
 			<fileset dir="lib/main/java">
 				<include name="async-http-client-1.8.3.jar" />
 				<include name="gson-2.2.4.jar" />
-				<include name="latch-0.6.jar" />
 			</fileset>
 		</copy>
 
 		<jar destfile="dist/core/bundles/com.elevenpaths.latch/com.elevenpaths.latch.jar">
 			<fileset dir="dist/main/classes">
+				<include name="com/elevenpaths/latch/*.class" />
 				<include name="com/elevenpaths/latch/plugins/openexchange/config/*.class" />
 				<include name="com/elevenpaths/latch/plugins/openexchange/impl/*.class" />
 				<include name="com/elevenpaths/latch/plugins/openexchange/osgi/*.class" />
