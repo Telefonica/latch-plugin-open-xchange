@@ -1,0 +1,20 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: latch\n"
+"PO-Revision-Date: DATE\n"
+"Last-Translator: NAME <EMAIL>\n"
+"Language-Team: NAME <EMAIL>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: apps/com.elevenpaths/latch/settings/pane.js:22
+#: module:com.elevenpaths/latch
+msgid "Unpair"
+msgstr "Unpair"
+
+#: apps/com.elevenpaths/latch/settings/pane.js:48
+#: module:com.elevenpaths/latch
+msgid "Pair"
+msgstr "Pair"
