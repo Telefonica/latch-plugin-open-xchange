@@ -3,7 +3,7 @@
 
 ##INSTALLING THE LATCH PLUGIN
 ###PREREQUISITES
-* Open-Xchange version 7.4.2
+* Open-Xchange version 7.6.2
 
 * To get the **"Application ID"** and **"Secret"**, (fundamental values for integrating Latch in any application), it’s necessary to register a developer account in [Latch's website](https://latch.elevenpaths.com). On the upper right side, click on **"Developer area"**. 
 

@@ -1,8 +1,8 @@
 define('com.elevenpaths/latch/main', function () {
 
-    "use strict";
+    'use strict';
 
-    var app = ox.ui.createApp({ name: "com.elevenpaths/latch", title : "Latch"});
+    var app = ox.ui.createApp({ name: 'com.elevenpaths/latch', title : 'Latch'});
 
     return {
         getApp: app.getInstance

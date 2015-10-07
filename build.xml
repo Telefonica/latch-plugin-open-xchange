@@ -1,6 +1,6 @@
 <project>
 
-	<property name="version" value="1.0.0" />
+	<property name="version" value="1.1.0" />
 
 	<property file="build.properties" />
 
@@ -16,7 +16,7 @@
 			<include name="bundles/com.openexchange.java.jar" />
 			<include name="bundles/com.openexchange.osgi.jar" />
 			<include name="bundles/com.openexchange.server/com.openexchange.server.jar" />
-			<include name="bundles/org.eclipse.osgi_3.9.0.v20130529-1710.jar" />
+			<include name="bundles/org.eclipse.osgi_3.9.1.v20140110-1610.jar" />
 			<include name="bundles/org.json.jar" />
 			<include name="bundles/slf4j-api-1.7.5.jar" />
 		</fileset>
@@ -82,6 +82,7 @@
 
 		<mkdir dir="dist/test/reports" />
 
+		<!--
 		<testng haltonfailure="true" outputDir="dist/test/reports">
 			<classpath>
 				<path refid="build.classpath.main" />
@@ -92,6 +93,7 @@
 			<jvmarg value="-ea" />
 			<xmlfileset dir="src/test" includes="testng.xml" />
 		</testng>
+        -->
 
 		<mkdir dir="dist/installer/classes" />
 
@@ -110,7 +112,6 @@
 		</copy>
 
 		<replace file="dist/commands/build-appsuite.sh" token="@@@BASEDIR@@@" value="${basedir}" />
-		<replace file="dist/commands/build-appsuite.sh" token="@@@APPSUITE_UI_BINDIR@@@" value="${openexchange.ui.dir}/bin" />
 
 		<chmod perm="755">
 			<fileset dir="dist/commands">
@@ -118,13 +119,23 @@
 			</fileset>
 		</chmod>
 
-		<mkdir dir="dist/pairing/appsuite" />
+		<mkdir dir="dist/main/appsuite" />
+
+		<copy todir="dist/main/appsuite">
+			<fileset dir="src/main/appsuite">
+				<include name="**/*" />
+			</fileset>
+		</copy>
 
 		<exec executable="dist/commands/build-appsuite.sh" />
-		<move file="dist/pairing/appsuite/manifests/manifest.json" tofile="dist/pairing/appsuite/manifests/latch.json" />
 
-		<delete dir="src/main/appsuite/tmp" />
-		<delete file="src/main/appsuite/ox.pot" />
+		<mkdir dir="dist/pairing/appsuite" />
+
+		<copy todir="dist/pairing/appsuite">
+			<fileset dir="dist/main/appsuite/dist/appsuite">
+				<include name="**/*" />
+			</fileset>
+		</copy>
 
 	</target>
 
@@ -187,6 +198,12 @@
 			</fileset>
 		</copy>
 
+		<chmod perm="755">
+			<fileset dir="dist/installer">
+				<include name="**/*.sh" />
+			</fileset>
+		</chmod>
+
 		<replace file="dist/installer/installer.xml" token="@@@VERSION@@@" value="${version}" />
 		<replace file="dist/installer/installer.xml" token="@@@BASEDIR@@@" value="${basedir}" />
 
@@ -202,7 +219,7 @@
 
 	<target name="dist" depends="clean, build, prepare">
 
-		<IzPack input="dist/installer/installer.xml" output="dist/latch-open-xchange-installer-${version}.jar" basedir="dist/installer" />
+		<IzPack input="dist/installer/installer.xml" output="dist/latch-open-xchange-installer-${version}.jar" basedir="dist/installer"	izPackDir="${izpack.dir}" />
 
 		<delete dir="dist/commands" />
 		<delete dir="dist/core" />
