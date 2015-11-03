@@ -12,34 +12,34 @@ msgstr ""
 #: apps/com.elevenpaths/latch/settings/pane.js:17
 #: module:com.elevenpaths/latch
 msgid "Account paired"
-msgstr "Account paired"
+msgstr "Cuenta pareada"
 
 #: apps/com.elevenpaths/latch/settings/pane.js:22
 #: module:com.elevenpaths/latch
 msgid "Unpair"
-msgstr "Unpair"
+msgstr "Desparear"
 
 #: apps/com.elevenpaths/latch/settings/pane.js:29
 #: module:com.elevenpaths/latch
 msgid "Unable to unpair Latch account"
-msgstr "Unable to unpair Latch account"
+msgstr "No se ha podido desparear la cuenta"
 
 #: apps/com.elevenpaths/latch/settings/pane.js:42
 #: module:com.elevenpaths/latch
 msgid "Account unpaired. Pairing token: "
-msgstr "Account unpaired. Pairing token: "
+msgstr "Cuenta despareada. Token: "
 
 #: apps/com.elevenpaths/latch/settings/pane.js:48
 #: module:com.elevenpaths/latch
 msgid "Pair"
-msgstr "Pair"
+msgstr "Parear"
 
 #: apps/com.elevenpaths/latch/settings/pane.js:56
 #: module:com.elevenpaths/latch
 msgid "Unable to pair Latch account"
-msgstr "Unable to pair Latch account"
+msgstr "No se ha podido parear la cuenta"
 
 #: apps/com.elevenpaths/latch/settings/pane.js:69
 #: module:com.elevenpaths/latch
 msgid "Unable to get Latch account status"
-msgstr "Unable to get Latch account status"
+msgstr "No se ha podido obtener el estado de la cuenta"
