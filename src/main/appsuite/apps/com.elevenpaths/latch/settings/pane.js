@@ -14,7 +14,7 @@ define('com.elevenpaths/latch/settings/pane',
 
                 var label = $('<label class="control-label" style="margin-right: 5px; text-align: left;">');
 
-                label.text('Account paired');
+                label.text(gt('Account paired'));
 
                 $('.control-group').empty().append(label);
 
@@ -26,7 +26,7 @@ define('com.elevenpaths/latch/settings/pane',
                         draw();
                     }).fail(function () {
                         require(['io.ox/core/notifications'], function (notifications) {
-                            notifications.yell('error', 'Unable to unpair Latch account');
+                            notifications.yell('error', gt('Unable to unpair Latch account'));
                         });
                     });
                 });
@@ -39,7 +39,7 @@ define('com.elevenpaths/latch/settings/pane',
 
                 var label = $('<label class="control-label" style="margin-right: 5px; text-align: left;">');
 
-                label.text('Account unpaired. Pairing token: ');
+                label.text(gt('Account unpaired. Pairing token: '));
                 label.append($('<input type="text" class="latch-token" maxlength="6" style="width: 60px">'));
 
                 $('.control-group').empty().append(label);
@@ -53,7 +53,7 @@ define('com.elevenpaths/latch/settings/pane',
                             draw();
                         }).fail(function () {
                             require(['io.ox/core/notifications'], function (notifications) {
-                                notifications.yell('error', 'Unable to pair Latch account');
+                                notifications.yell('error', gt('Unable to pair Latch account'));
                             });
                         });
                     }
@@ -66,7 +66,7 @@ define('com.elevenpaths/latch/settings/pane',
 
         }).fail(function () {
             require(['io.ox/core/notifications'], function (notifications) {
-                notifications.yell('error', 'Unable to get Latch account status');
+                notifications.yell('error', gt('Unable to get Latch account status'));
             });
         });
 
