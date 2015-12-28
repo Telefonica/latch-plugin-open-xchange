@@ -7,14 +7,39 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: apps/com.elevenpaths/latch/settings/pane.js:17
+#: module:com.elevenpaths/latch
+msgid "Account paired"
+msgstr ""
 
 #: apps/com.elevenpaths/latch/settings/pane.js:22
 #: module:com.elevenpaths/latch
 msgid "Unpair"
 msgstr ""
 
+#: apps/com.elevenpaths/latch/settings/pane.js:29
+#: module:com.elevenpaths/latch
+msgid "Unable to unpair Latch account"
+msgstr ""
+
+#: apps/com.elevenpaths/latch/settings/pane.js:42
+#: module:com.elevenpaths/latch
+msgid "Account unpaired. Pairing token: "
+msgstr ""
+
 #: apps/com.elevenpaths/latch/settings/pane.js:48
 #: module:com.elevenpaths/latch
 msgid "Pair"
+msgstr ""
+
+#: apps/com.elevenpaths/latch/settings/pane.js:56
+#: module:com.elevenpaths/latch
+msgid "Unable to pair Latch account"
+msgstr ""
+
+#: apps/com.elevenpaths/latch/settings/pane.js:69
+#: module:com.elevenpaths/latch
+msgid "Unable to get Latch account status"
 msgstr ""
