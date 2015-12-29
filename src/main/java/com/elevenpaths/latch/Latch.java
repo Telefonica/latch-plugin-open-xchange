@@ -33,7 +33,7 @@ import com.google.gson.JsonElement;
 import com.ning.http.util.Base64;
 
 public class Latch {
-	protected static final String API_VERSION = "0.6";
+	protected static final String API_VERSION = "1.0";
       public static String API_HOST = "https://latch.elevenpaths.com";
 	public static final String API_CHECK_STATUS_URL = "/api/"+API_VERSION+"/status";
 	public static final String API_PAIR_URL = "/api/"+API_VERSION+"/pair";
